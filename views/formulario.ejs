@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <% if (locals.post) { %>
+    <title>Editar Post</title>
+  <% } else { %>
+    <title>Novo Post</title>
+  <% } %>
+
+  <link rel="stylesheet" href="/css/blueprint.css">
+  <link rel="stylesheet" href="/css/trumbowyg.css">
+  <style>
+    body { margin-top: 5em }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="/">Voltar</a>
+    <hr>
+    
+    <% if (locals.post) { %>
+      <h2>Editar <strong id="novoTitulo"><%= post.titulo %></strong></h2>
+    <% } else { %>
+      <h2>Novo Post <strong id="novoTitulo"></strong></h2>
+    <% } %>
+
+    <form method="post">
+      <div>
+        <label for="titulo">Título</label>
+      </div>
+      <% if (locals.post) { %>
+        <input type="text" id="titulo" name="titulo" value="<%= post.titulo %>">
+      <% } else { %>
+        <input type="text" id="titulo" name="titulo">
+      <% } %>
+
+      <div>
+        <label for="conteudo">Conteúdo</label>
+      </div>
+      <% if (locals.post) { %>
+        <textarea id="conteudo" name="conteudo"><%= post.conteudo %></textarea>
+      <% } else { %>
+        <textarea id="conteudo" name="conteudo"></textarea>
+      <% } %>
+
+      <div>
+        <input type="submit" value="Salvar">
+        <a href="/">Cancelar</a>
+      </div>
+    </form>
+  </div>
+
+  <script src="/js/jquery.js"></script>
+  <script src="/js/trumbowyg.js"></script>
+  <script src="/js/trumbowyg.pt.min.js"></script>
+  <script src="/js/formulario.js"></script>
+</body>
+</html>

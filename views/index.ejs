@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Posts</title>
+
+  <link rel="stylesheet" href="css/blueprint.css">
+  <link rel="stylesheet" href="css/trumbowyg.css">
+  <style>
+    body { margin-top: 5em }
+    a:hover { cursor: pointer }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <a href="/post/novo">Incluir</a>
+    <hr>
+
+    <% posts.forEach(function (post) {%>
+    <div>
+      <small>
+        <a href="/post/<%= post._id %>" class="editar-post">Editar</a> |
+        <a href="<%= post._id %>" data-id="<%= post._id %>" class="deletar-post">Deletar</a>
+      </small>
+      <h3><%= post.titulo %></h3>
+      <% if (post.updatedAt) { %>
+        <p>Atualizado em: <span class="postData"><%= post.updatedAt %></span></p>
+      <% } else { %>
+        <p>Publicado em: <span class="postData"><%= post.publishedAt %></span></p>
+      <% } %>
+      <p><%- post.conteudo %></p>
+    </div>
+    <% }) %>
+
+  </div>
+
+  <script src="js/jquery.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/locale/pt-br.js"></script>
+  <script src="js/index.js"></script>
+</body>
+</html>
